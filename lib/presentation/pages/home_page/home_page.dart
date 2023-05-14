@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tripai/presentation/pages/info_page/info_page.dart';
 
 import '../../../generated/l10n.dart';
-import '../info_page/info_page.dart';
 
 class HomePage extends StatefulWidget {
-  static const String routeName = '/home';
+  static const String routeName = 'home';
 
   const HomePage({super.key, required this.title});
 
@@ -27,7 +27,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    S.load(const Locale('uz'));
   }
 
   @override
@@ -57,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    context.go(InfoPage.routeName);
+                    context.goNamed(InfoPage.routeName);
                   },
                   child: Text(S.current.btn),
                 )

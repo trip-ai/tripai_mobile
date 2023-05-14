@@ -6,15 +6,19 @@ import '../presentation/pages/info_page/info_page.dart';
 abstract class AppRouter {
   static final router = GoRouter(
     debugLogDiagnostics: true,
-    initialLocation: HomePage.routeName,
+    initialLocation: '/',
     routes: [
       GoRoute(
-        path: HomePage.routeName,
+        name: HomePage.routeName,
+        path: '/',
         builder: (context, state) => const HomePage(title: 'App title'),
-      ),
-      GoRoute(
-        path: InfoPage.routeName,
-        builder: (context, state) => const InfoPage(),
+        routes: [
+          GoRoute(
+            name: InfoPage.routeName,
+            path: 'info',
+            builder: (context, state) => const InfoPage(),
+          ),
+        ],
       ),
     ],
   );

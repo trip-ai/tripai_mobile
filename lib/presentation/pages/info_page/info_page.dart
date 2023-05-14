@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InfoPage extends StatelessWidget {
-  static const String routeName = '/info';
+  static const String routeName = 'info';
   const InfoPage({super.key});
 
   @override
