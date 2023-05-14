@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutterstarterkit">
+    package="uz.thelab.tripai">
    <application
-        android:label="flutterstarterkit"
+        android:label="tripai"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
