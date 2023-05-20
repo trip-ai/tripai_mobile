@@ -26,7 +26,6 @@ class _SplashPageState extends State<SplashPage> {
     await S.load(const Locale('en'));
     await LocalStorage.init();
     bool isShowedIntor = LocalDataRepository.isShowedIntro;
-
     if (isShowedIntor) {
       navigateToHome();
     } else {

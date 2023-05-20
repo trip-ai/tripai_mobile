@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripai/presentation/pages/login_page/login_page.dart';
-import 'package:tripai/presentation/widgets/text_container.dart';
 
+import '../../../data/repositories/local_data_repository.dart';
 import '../../widgets/button_container.dart';
+import '../../widgets/text_container.dart';
+import '../login_page/login_page.dart';
 
 class IntroPage extends StatelessWidget {
   static const String routeName = 'intro';
@@ -12,7 +13,7 @@ class IntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // LocalDataRepository.isShowedIntro = true;
+    LocalDataRepository.isShowedIntro = true;
     return Scaffold(
       body: SafeArea(
         child: Column(
