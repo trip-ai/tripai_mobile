@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tripai/generated/l10n.dart';
 import 'package:tripai/presentation/widgets/button_container.dart';
 import 'package:tripai/presentation/widgets/text_container.dart';
 
@@ -22,8 +23,8 @@ class _LocationPageState extends State<LocationPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 32),
-            const TextContainer(
-              'To help you make\nthe right choice,\nwe need to know\nyour location!',
+            TextContainer(
+              S.current.locationPermissionText,
               textAlign: TextAlign.center,
               fontSize: 32,
               fontWeight: FontWeight.bold,
@@ -40,12 +41,12 @@ class _LocationPageState extends State<LocationPage> {
               child: Column(
                 children: [
                   ButtonContainer(
-                    title: 'Follow the location',
+                    title: S.current.followTheLocation,
                     onTap: () {},
                   ),
                   const SizedBox(height: 8),
                   ButtonContainer(
-                    title: 'Skip',
+                    title: S.current.skipBtn,
                     textColor: ConstColors.secondary,
                     background: Theme.of(context).scaffoldBackgroundColor,
                     borderColor: ConstColors.secondary,

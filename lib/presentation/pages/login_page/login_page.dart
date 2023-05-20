@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripai/constants/const_colors.dart';
-import 'package:tripai/data/repositories/local_data_repository.dart';
-import 'package:tripai/presentation/pages/home_page/home_page.dart';
-import 'package:tripai/presentation/pages/interests_page/interests_page.dart';
-import 'package:tripai/presentation/widgets/text_container.dart';
 
+import '../../../constants/const_colors.dart';
+import '../../../data/repositories/local_data_repository.dart';
+import '../../../generated/l10n.dart';
 import '../../widgets/button_container.dart';
+import '../../widgets/text_container.dart';
+import '../home_page/home_page.dart';
+import '../interests_page/interests_page.dart';
 
 class LoginPage extends StatelessWidget {
   static const String routeName = 'login';
@@ -15,7 +16,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // LocalDataRepository.isShowedIntro = true;
     navigateTo() {
       if (LocalDataRepository.interestsList.isEmpty) {
         context.goNamed(InterestPage.routeName);
@@ -30,8 +30,8 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 32),
-            const TextContainer(
-              'Register in the app\nto save your data!',
+            TextContainer(
+              S.current.registerText,
               textAlign: TextAlign.center,
               fontSize: 32,
               fontWeight: FontWeight.bold,
@@ -43,14 +43,14 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   ButtonContainer(
-                    title: 'Next',
+                    title: S.current.nextBtn,
                     onTap: () {
                       navigateTo();
                     },
                   ),
                   const SizedBox(height: 8),
                   ButtonContainer(
-                    title: 'Skip',
+                    title: S.current.skipBtn,
                     textColor: ConstColors.secondary,
                     background: Theme.of(context).scaffoldBackgroundColor,
                     borderColor: ConstColors.secondary,

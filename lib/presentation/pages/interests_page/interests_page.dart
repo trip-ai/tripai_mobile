@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripai/constants/const_colors.dart';
-import 'package:tripai/presentation/pages/location_page/location_page.dart';
-import 'package:tripai/presentation/widgets/button_container.dart';
-import 'package:tripai/presentation/widgets/text_container.dart';
+
+import '../../../generated/l10n.dart';
+import '../../widgets/button_container.dart';
+import '../../widgets/text_container.dart';
+import '../location_page/location_page.dart';
+import 'widgets/interest_item.dart';
 
 class InterestPage extends StatefulWidget {
   static const String routeName = 'interests';
@@ -53,13 +55,13 @@ class _InterestPageState extends State<InterestPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 100,
                 child: Column(
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextContainer(
-                      'What interests you?',
+                      S.current.whatInterests,
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                     ),
@@ -99,7 +101,7 @@ class _InterestPageState extends State<InterestPage> {
               ),
               const SizedBox(height: 20),
               ButtonContainer(
-                title: 'Getting started',
+                title: S.current.startBtn,
                 onTap: () {
                   context.pushReplacementNamed(LocationPage.routeName);
                 },
@@ -107,46 +109,6 @@ class _InterestPageState extends State<InterestPage> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class InterestItem extends StatefulWidget {
-  const InterestItem({
-    super.key,
-    required this.title,
-  });
-
-  final String title;
-
-  @override
-  State<InterestItem> createState() => _InterestItemState();
-}
-
-class _InterestItemState extends State<InterestItem> {
-  bool isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 12,
-        ),
-        decoration: BoxDecoration(
-          color: isSelected ? ConstColors.primary : null,
-          border: isSelected ? null : Border.all(),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: TextContainer(widget.title),
       ),
     );
   }

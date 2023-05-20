@@ -1,5 +1,14 @@
 {
   "btn": "Open info page",
+  "followTheLocation": "Follow the location",
+  "introText": "Get ready\nfor new journeys\nwith us!",
   "language": "en",
-  "message": "You have pushed the button this many times:"
+  "locationPermissionText": "To help you make\nthe right choice,\nwe need to know\nyour location!",
+  "message": "You have pushed the button this many times:",
+  "nextBtn": "Next",
+  "registerText": "Register in the app\nto save your data!",
+  "skipBtn": "Skip",
+  "startBtn": "Getting started",
+  "taglineText": "Your AI-enhanced\ntrip advisor",
+  "whatInterests": "What interests you?"
 }

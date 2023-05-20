@@ -1,5 +1,14 @@
 {
   "btn": "Ma'lumotlar sahifasini ochish",
+  "followTheLocation": "Follow the location",
+  "introText": "Get ready\nfor new journeys\nwith us!",
   "language": "uz",
-  "message": "Siz tugamani shuncha martta bosgansiz:"
+  "locationPermissionText": "To help you make\nthe right choice,\nwe need to know\nyour location!",
+  "message": "Siz tugamani shuncha martta bosgansiz:",
+  "nextBtn": "Next",
+  "registerText": "Register in the app\nto save your data!",
+  "skipBtn": "Skip",
+  "startBtn": "Getting started",
+  "taglineText": "Your AI-enhanced\ntrip advisor",
+  "whatInterests": "What interests you?"
 }

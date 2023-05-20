@@ -60,6 +60,26 @@ class S {
     );
   }
 
+  /// `Follow the location`
+  String get followTheLocation {
+    return Intl.message(
+      'Follow the location',
+      name: 'followTheLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get ready\nfor new journeys\nwith us!`
+  String get introText {
+    return Intl.message(
+      'Get ready\nfor new journeys\nwith us!',
+      name: 'introText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `uz`
   String get language {
     return Intl.message(
@@ -70,11 +90,81 @@ class S {
     );
   }
 
+  /// `To help you make\nthe right choice,\nwe need to know\nyour location!`
+  String get locationPermissionText {
+    return Intl.message(
+      'To help you make\nthe right choice,\nwe need to know\nyour location!',
+      name: 'locationPermissionText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Siz tugamani shuncha martta bosgansiz:`
   String get message {
     return Intl.message(
       'Siz tugamani shuncha martta bosgansiz:',
       name: 'message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get nextBtn {
+    return Intl.message(
+      'Next',
+      name: 'nextBtn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register in the app\nto save your data!`
+  String get registerText {
+    return Intl.message(
+      'Register in the app\nto save your data!',
+      name: 'registerText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skipBtn {
+    return Intl.message(
+      'Skip',
+      name: 'skipBtn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Getting started`
+  String get startBtn {
+    return Intl.message(
+      'Getting started',
+      name: 'startBtn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your AI-enhanced\ntrip advisor`
+  String get taglineText {
+    return Intl.message(
+      'Your AI-enhanced\ntrip advisor',
+      name: 'taglineText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What interests you?`
+  String get whatInterests {
+    return Intl.message(
+      'What interests you?',
+      name: 'whatInterests',
       desc: '',
       args: [],
     );

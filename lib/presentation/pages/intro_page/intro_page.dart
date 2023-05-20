@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../data/repositories/local_data_repository.dart';
+import '../../../generated/l10n.dart';
 import '../../widgets/button_container.dart';
 import '../../widgets/text_container.dart';
 import '../login_page/login_page.dart';
@@ -20,8 +21,8 @@ class IntroPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 32),
-            const TextContainer(
-              'Get ready\nfor new journeys\nwith us!',
+            TextContainer(
+              S.current.introText,
               textAlign: TextAlign.center,
               fontSize: 32,
               fontWeight: FontWeight.bold,
@@ -33,7 +34,7 @@ class IntroPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: ButtonContainer(
-                    title: 'Next',
+                    title: S.current.nextBtn,
                     onTap: () {
                       context.goNamed(LoginPage.routeName);
                     },

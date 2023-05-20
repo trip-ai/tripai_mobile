@@ -60,8 +60,8 @@ class _SplashPageState extends State<SplashPage> {
             child: SvgPicture.asset('assets/img/logo.svg'),
           ),
           const SizedBox(height: 13),
-          const TextContainer(
-            'Your AI-enhanced\ntrip advisor',
+          TextContainer(
+            S.current.taglineText,
             textAlign: TextAlign.center,
             fontSize: 12,
           )

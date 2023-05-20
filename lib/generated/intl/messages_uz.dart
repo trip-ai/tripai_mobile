@@ -24,8 +24,23 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "btn": MessageLookupByLibrary.simpleMessage(
             "Ma\'lumotlar sahifasini ochish"),
+        "followTheLocation":
+            MessageLookupByLibrary.simpleMessage("Follow the location"),
+        "introText": MessageLookupByLibrary.simpleMessage(
+            "Get ready\nfor new journeys\nwith us!"),
         "language": MessageLookupByLibrary.simpleMessage("uz"),
+        "locationPermissionText": MessageLookupByLibrary.simpleMessage(
+            "To help you make\nthe right choice,\nwe need to know\nyour location!"),
         "message": MessageLookupByLibrary.simpleMessage(
-            "Siz tugamani shuncha martta bosgansiz:")
+            "Siz tugamani shuncha martta bosgansiz:"),
+        "nextBtn": MessageLookupByLibrary.simpleMessage("Next"),
+        "registerText": MessageLookupByLibrary.simpleMessage(
+            "Register in the app\nto save your data!"),
+        "skipBtn": MessageLookupByLibrary.simpleMessage("Skip"),
+        "startBtn": MessageLookupByLibrary.simpleMessage("Getting started"),
+        "taglineText": MessageLookupByLibrary.simpleMessage(
+            "Your AI-enhanced\ntrip advisor"),
+        "whatInterests":
+            MessageLookupByLibrary.simpleMessage("What interests you?")
       };
 }
