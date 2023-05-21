@@ -4,6 +4,7 @@ import '../presentation/pages/home_page/home_page.dart';
 import '../presentation/pages/info_page/info_page.dart';
 import '../presentation/pages/interests_page/interests_page.dart';
 import '../presentation/pages/intro_page/intro_page.dart';
+import '../presentation/pages/loading_page/loading_page.dart';
 import '../presentation/pages/location_page/location_page.dart';
 import '../presentation/pages/login_page/login_page.dart';
 import '../presentation/pages/splash_page/splash_page.dart';
@@ -42,6 +43,11 @@ abstract class AppRouter {
             name: LocationPage.routeName,
             path: 'location',
             builder: (context, state) => const LocationPage(),
+          ),
+          GoRoute(
+            name: LoadingPage.routeName,
+            path: 'loading',
+            builder: (context, state) => const LoadingPage(),
           ),
           GoRoute(
             name: InterestPage.routeName,

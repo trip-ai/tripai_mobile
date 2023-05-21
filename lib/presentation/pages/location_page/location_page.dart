@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripai/generated/l10n.dart';
-import 'package:tripai/presentation/widgets/button_container.dart';
-import 'package:tripai/presentation/widgets/text_container.dart';
 
 import '../../../constants/const_colors.dart';
+import '../../../generated/l10n.dart';
+import '../../widgets/button_container.dart';
+import '../../widgets/text_container.dart';
+import '../loading_page/loading_page.dart';
 
 class LocationPage extends StatefulWidget {
   static const String routeName = 'location';
@@ -42,7 +43,9 @@ class _LocationPageState extends State<LocationPage> {
                 children: [
                   ButtonContainer(
                     title: S.current.followTheLocation,
-                    onTap: () {},
+                    onTap: () {
+                      context.pushReplacementNamed(LoadingPage.routeName);
+                    },
                   ),
                   const SizedBox(height: 8),
                   ButtonContainer(
@@ -51,7 +54,7 @@ class _LocationPageState extends State<LocationPage> {
                     background: Theme.of(context).scaffoldBackgroundColor,
                     borderColor: ConstColors.secondary,
                     onTap: () {
-                      context.pop();
+                      context.pushReplacementNamed(LoadingPage.routeName);
                     },
                   ),
                   const SizedBox(height: 10),
