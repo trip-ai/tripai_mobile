@@ -34,7 +34,9 @@ class _InterestItemState extends State<InterestItem> {
         ),
         decoration: BoxDecoration(
           color: isSelected ? ConstColors.primary : null,
-          border: isSelected ? null : Border.all(),
+          border: Border.all(
+            color: isSelected ? ConstColors.primary : Colors.black,
+          ),
           borderRadius: BorderRadius.circular(16),
         ),
         child: TextContainer(widget.title),
