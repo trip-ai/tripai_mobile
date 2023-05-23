@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../widgets/text_container.dart';
+import '../home_page/home_page.dart';
 
 class LoadingPage extends StatefulWidget {
   static const String routeName = 'loading';
@@ -20,10 +22,13 @@ class _LoadingPageState extends State<LoadingPage> {
   void initState() {
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      if (_currentPage >= 2) {
+        timer.cancel();
+        context.pushReplacementNamed(HomePage.routeName);
+      }
+
       if (_currentPage < 2) {
         _currentPage++;
-      } else {
-        _currentPage = 0;
       }
 
       controller.animateToPage(
