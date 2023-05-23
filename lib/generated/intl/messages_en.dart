@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nextBtn": MessageLookupByLibrary.simpleMessage("Next"),
         "registerText": MessageLookupByLibrary.simpleMessage(
             "Register in the app\nto save your data!"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "skipBtn": MessageLookupByLibrary.simpleMessage("Skip"),
         "startBtn": MessageLookupByLibrary.simpleMessage("Getting started"),
         "taglineText": MessageLookupByLibrary.simpleMessage(

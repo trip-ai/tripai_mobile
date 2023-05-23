@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   ButtonContainer(
-                    title: S.current.nextBtn,
+                    title: S.current.signUp,
                     onTap: () async {
                       GoogleSignIn googleSignIn = GoogleSignIn();
                       var singIn = await googleSignIn.signIn();

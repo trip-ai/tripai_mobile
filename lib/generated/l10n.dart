@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `Sign up`
+  String get signUp {
+    return Intl.message(
+      'Sign up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Skip`
   String get skipBtn {
     return Intl.message(
