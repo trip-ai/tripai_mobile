@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tripai/presentation/widgets/text_container.dart';
+
+import '../../widgets/text_container.dart';
 
 class LoadingPage extends StatefulWidget {
   static const String routeName = 'loading';

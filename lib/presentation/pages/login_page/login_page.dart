@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../constants/const_colors.dart';
 import '../../../data/repositories/local_data_repository.dart';
@@ -44,8 +45,13 @@ class LoginPage extends StatelessWidget {
                 children: [
                   ButtonContainer(
                     title: S.current.nextBtn,
-                    onTap: () {
-                      navigateTo();
+                    onTap: () async {
+                      GoogleSignIn googleSignIn = GoogleSignIn();
+                      var singIn = await googleSignIn.signIn();
+                      if (singIn != null) {
+                        print(singIn.toString());
+                      }
+                      await googleSignIn.signOut();
                     },
                   ),
                   const SizedBox(height: 8),

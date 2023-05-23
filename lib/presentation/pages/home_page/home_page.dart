@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tripai/presentation/pages/info_page/info_page.dart';
 
 import '../../../generated/l10n.dart';
+import '../info_page/info_page.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = 'home';

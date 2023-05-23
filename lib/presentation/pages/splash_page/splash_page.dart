@@ -26,11 +26,12 @@ class _SplashPageState extends State<SplashPage> {
     await S.load(const Locale('en'));
     await LocalStorage.init();
     bool isShowedIntor = LocalDataRepository.isShowedIntro;
-    if (isShowedIntor) {
-      navigateToHome();
-    } else {
-      navigateToIntro();
-    }
+    navigateToIntro();
+    // if (isShowedIntor) {
+    //   navigateToHome();
+    // } else {
+    //   navigateToIntro();
+    // }
   }
 
   navigateToHome() {
@@ -60,8 +61,8 @@ class _SplashPageState extends State<SplashPage> {
             child: SvgPicture.asset('assets/img/logo.svg'),
           ),
           const SizedBox(height: 13),
-          TextContainer(
-            S.current.taglineText,
+          const TextContainer(
+            'Your AI-enhanced\ntrip advisor',
             textAlign: TextAlign.center,
             fontSize: 12,
           )
