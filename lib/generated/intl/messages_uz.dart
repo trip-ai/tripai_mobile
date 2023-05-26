@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ma\'lumotlar sahifasini ochish"),
         "followTheLocation":
             MessageLookupByLibrary.simpleMessage("Follow the location"),
+        "homeSearchHint":
+            MessageLookupByLibrary.simpleMessage("Where do you want to go?"),
         "introText": MessageLookupByLibrary.simpleMessage(
             "Get ready\nfor new journeys\nwith us!"),
         "language": MessageLookupByLibrary.simpleMessage("uz"),

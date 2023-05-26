@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `Where do you want to go?`
+  String get homeSearchHint {
+    return Intl.message(
+      'Where do you want to go?',
+      name: 'homeSearchHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Get ready\nfor new journeys\nwith us!`
   String get introText {
     return Intl.message(
