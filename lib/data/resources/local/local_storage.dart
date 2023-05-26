@@ -8,9 +8,6 @@ abstract class LocalStorage {
   static const String kCache = 'cache';
 
   static Future<void> init() async {
-    // final appDocumentDir =
-    //     await path_provider.getApplicationDocumentsDirectory();
-    // Hive.init(appDocumentDir.path);
     await Hive.initFlutter();
 
     await Hive.openBox<dynamic>(kSettings);
