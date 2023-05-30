@@ -1,3 +1,5 @@
+import 'package:tripai/domain/core/formatters.dart';
+
 class WeatherModel {
   final WeatherLocationModel location;
   final WeatherCurrentModel current;
@@ -137,7 +139,7 @@ class WeatherConditionModel {
   factory WeatherConditionModel.fromJson(Map<String, dynamic> json) =>
       WeatherConditionModel(
         text: json["text"],
-        icon: json["icon"],
+        icon: 'https:${json["icon"]}',
         code: json["code"],
       );
 
@@ -156,7 +158,7 @@ class WeatherLocationModel {
   final double lon;
   final String tzId;
   final int localtimeEpoch;
-  final String localtime;
+  final DateTime localtime;
 
   WeatherLocationModel({
     required this.name,
@@ -169,6 +171,8 @@ class WeatherLocationModel {
     required this.localtime,
   });
 
+  String get getLocaltime => dateToString(date: localtime);
+
   factory WeatherLocationModel.fromJson(Map<String, dynamic> json) =>
       WeatherLocationModel(
         name: json["name"],
@@ -178,7 +182,7 @@ class WeatherLocationModel {
         lon: json["lon"]?.toDouble(),
         tzId: json["tz_id"],
         localtimeEpoch: json["localtime_epoch"],
-        localtime: json["localtime"],
+        localtime: stringToDate(date: json["localtime"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -189,6 +193,6 @@ class WeatherLocationModel {
         "lon": lon,
         "tz_id": tzId,
         "localtime_epoch": localtimeEpoch,
-        "localtime": localtime,
+        "localtime": dateToString(date: localtime),
       };
 }

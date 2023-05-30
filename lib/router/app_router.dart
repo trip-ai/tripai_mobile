@@ -1,5 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../domain/cubit/weather_cubit/weather_cubit.dart';
 import '../presentation/pages/home_page/home_page.dart';
 import '../presentation/pages/info_page/info_page.dart';
 import '../presentation/pages/interests_page/interests_page.dart';
@@ -32,7 +34,14 @@ abstract class AppRouter {
       GoRoute(
         name: HomePage.routeName,
         path: '/home',
-        builder: (context, state) => const HomePage(title: 'App title'),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<WeatherCubit>(
+              create: (_) => WeatherCubit(),
+            ),
+          ],
+          child: const HomePage(),
+        ),
         routes: [
           GoRoute(
             name: InfoPage.routeName,

@@ -26,7 +26,7 @@ class WeatherState extends Equatable {
           lon: 68.766166,
           tzId: '',
           localtimeEpoch: 0,
-          localtime: '',
+          localtime: DateTime.now(),
         ),
         current: WeatherCurrentModel(
           lastUpdatedEpoch: 0,

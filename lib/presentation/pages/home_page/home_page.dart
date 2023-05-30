@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tripai/constants/const_colors.dart';
 import 'package:tripai/constants/const_widgets.dart';
 import 'package:tripai/generated/l10n.dart';
 
+import '../../../domain/cubit/weather_cubit/weather_cubit.dart';
 import '../../widgets/text_container.dart';
 import 'widgets/category_tab_widget.dart';
 import 'widgets/weather_widget.dart';
@@ -10,15 +13,22 @@ import 'widgets/weather_widget.dart';
 class HomePage extends StatefulWidget {
   static const String routeName = 'home';
 
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<WeatherCubit>(context).getWeather(
+      lat: 41.3109753,
+      long: 69.2793835,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               height: 40,
               width: 40,
               decoration: const BoxDecoration(
-                color: Color(0xFFF3F4F6),
+                color: ConstColors.gray100,
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -45,15 +55,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(width: 8),
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const TextContainer('Tashkent'),
+                TextContainer('Tashkent'),
                 TextContainer(
                   'Uzbekistan',
                   fontSize: 14,
-                  textColor: Colors.grey.shade400,
+                  textColor: ConstColors.gray400,
                 ),
               ],
             ),
@@ -64,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                   height: 40,
                   width: 40,
                   decoration: const BoxDecoration(
-                    color: Color(0xFFF3F4F6),
+                    color: ConstColors.gray100,
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -132,11 +142,13 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Container(
                   margin: const EdgeInsets.all(16),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: ConstWidgets.borderRadius,
-                    color: const Color(0xFFF3F4F6),
+                    color: ConstColors.gray100,
                   ),
                   child: Row(
                     children: [

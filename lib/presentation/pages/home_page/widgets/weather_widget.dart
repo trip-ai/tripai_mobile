@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:tripai/constants/const_colors.dart';
 
+import '../../../../domain/cubit/weather_cubit/weather_cubit.dart';
 import '../../../widgets/text_container.dart';
 
 class WeatherWidget extends StatelessWidget {
@@ -9,79 +13,104 @@ class WeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 12,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: const Color(0xFF1F2937),
-      ),
-      child: const Column(
-        children: [
-          //Top
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return BlocBuilder<WeatherCubit, WeatherState>(
+      builder: (context, state) {
+        if (state.isLoading) {
+          return const SizedBox(
+            height: 140,
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: ConstColors.gray800,
+          ),
+          child: Column(
             children: [
+              //Top
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.cloud,
-                    color: Colors.white,
-                    size: 32,
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 32,
+                        height: 32,
+                        child: Image.network(
+                          state.weather.current.condition.icon,
+                          fit: BoxFit.none,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextContainer(
+                            state.weather.location.getLocaltime,
+                            textColor: ConstColors.gray500,
+                            fontSize: 11,
+                          ),
+                          TextContainer(
+                            state.weather.current.condition.text,
+                            fontSize: 14,
+                            textColor: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 16),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       TextContainer(
-                        'Fri, 21 March',
-                        textColor: Color(0xFF6B7280),
-                        fontSize: 11,
+                        '${state.weather.current.tempC > 0 ? '+' : ''}${state.weather.current.tempC.round()}°C',
+                        textColor: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
                       ),
                       TextContainer(
-                        'Cloudy',
-                        fontSize: 14,
-                        textColor: Colors.white,
-                        fontWeight: FontWeight.w500,
+                        '${state.weather.location.name}, ${state.weather.location.country}',
+                        textColor: ConstColors.gray500,
+                        fontSize: 11,
                       ),
                     ],
                   ),
                 ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+              const SizedBox(height: 8),
+              const Divider(color: ConstColors.gray700, thickness: 2),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextContainer(
-                    '+24°C',
-                    textColor: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
+                  _WeaterInfoItem(
+                    title: 'Humidity',
+                    value: '${state.weather.current.humidity}%',
+                    iconPath: 'assets/img/home/weather/humidity.svg',
                   ),
-                  TextContainer(
-                    'Tashkent, Uzbekistan',
-                    textColor: Color(0xFF6B7280),
-                    fontSize: 11,
+                  _WeaterInfoItem(
+                    title: 'Wind speed',
+                    value: '${state.weather.current.windKph} km/h',
+                    iconPath: 'assets/img/home/weather/wind_speed.svg',
+                  ),
+                  _WeaterInfoItem(
+                    title: 'Precipitation',
+                    value: '${state.weather.current.precipIn}%',
+                    iconPath: 'assets/img/home/weather/precipitation.svg',
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: 8),
-          Divider(color: Color(0xFF374151), thickness: 2),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _WeaterInfoItem(title: 'Humidity', value: '65%'),
-              _WeaterInfoItem(title: 'Wind speed', value: '5 km/h'),
-              _WeaterInfoItem(title: 'Precipitation', value: '83%'),
-            ],
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -90,7 +119,9 @@ class _WeaterInfoItem extends StatelessWidget {
   const _WeaterInfoItem({
     required this.title,
     required this.value,
+    required this.iconPath,
   });
+  final String iconPath;
   final String title;
   final String value;
 
@@ -105,6 +136,9 @@ class _WeaterInfoItem extends StatelessWidget {
             color: Colors.white,
             shape: BoxShape.circle,
           ),
+          child: Center(
+            child: SvgPicture.asset(iconPath, width: 12, height: 12),
+          ),
         ),
         const SizedBox(width: 8),
         Column(
@@ -112,7 +146,7 @@ class _WeaterInfoItem extends StatelessWidget {
           children: [
             TextContainer(
               title,
-              textColor: const Color(0xFF6B7280),
+              textColor: ConstColors.gray500,
               fontSize: 11,
             ),
             TextContainer(
