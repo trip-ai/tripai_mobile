@@ -33,13 +33,16 @@ class _InterestItemState extends State<InterestItem> {
           vertical: 12,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? ConstColors.primary : null,
+          color: isSelected ? ConstColors.gray900 : null,
           border: Border.all(
-            color: isSelected ? ConstColors.primary : Colors.black,
+            color: isSelected ? ConstColors.gray900 : Colors.black,
           ),
           borderRadius: BorderRadius.circular(16),
         ),
-        child: TextContainer(widget.title),
+        child: TextContainer(
+          widget.title,
+          textColor: isSelected ? Colors.white : null,
+        ),
       ),
     );
   }
