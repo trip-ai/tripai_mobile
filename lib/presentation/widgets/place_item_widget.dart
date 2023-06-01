@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../constants/const_colors.dart';
+import 'info_container_widget.dart';
 import 'text_container.dart';
 
 class PlaceItemWidget extends StatelessWidget {
@@ -91,7 +92,7 @@ class PlaceItemWidget extends StatelessWidget {
           ),
           const Row(
             children: [
-              _BottomInfoItem(
+              InfoContainerWidget(
                 icon: Icon(
                   Icons.star,
                   size: 10,
@@ -99,7 +100,7 @@ class PlaceItemWidget extends StatelessWidget {
                 title: '4.5',
               ),
               SizedBox(width: 4),
-              _BottomInfoItem(
+              InfoContainerWidget(
                 icon: Icon(
                   Icons.chat,
                   size: 10,
@@ -107,7 +108,7 @@ class PlaceItemWidget extends StatelessWidget {
                 title: '245',
               ),
               SizedBox(width: 4),
-              _BottomInfoItem(
+              InfoContainerWidget(
                 icon: Icon(
                   Icons.location_on,
                   size: 10,
@@ -115,46 +116,6 @@ class PlaceItemWidget extends StatelessWidget {
                 title: 'Tashkent',
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _BottomInfoItem extends StatelessWidget {
-  const _BottomInfoItem({
-    required this.title,
-    required this.icon,
-  });
-
-  final String title;
-  final Widget icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: ConstColors.gray900,
-        ),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 10,
-            height: 10,
-            child: Center(child: icon),
-          ),
-          const SizedBox(width: 2),
-          TextContainer(
-            title,
-            fontSize: 12,
           ),
         ],
       ),

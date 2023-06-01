@@ -8,6 +8,7 @@ import '../../../constants/const_widgets.dart';
 import '../../../domain/cubit/weather_cubit/weather_cubit.dart';
 import '../../widgets/text_container.dart';
 import 'widgets/category_tab_widget.dart';
+import 'widgets/itinerary_item_widget.dart';
 import 'widgets/places_item_widget.dart';
 import 'widgets/weather_widget.dart';
 
@@ -187,6 +188,11 @@ class _HomePageState extends State<HomePage> {
               onShowAll: () {},
             ),
             const SizedBox(height: 8),
+            ItineraryListWidget(
+              title: 'Recommended itineraries',
+              subTitle: 'AI generated itineraries from popular places',
+              onShowAll: () {},
+            ),
           ],
         ),
       ),
