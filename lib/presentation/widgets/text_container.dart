@@ -22,9 +22,9 @@ class TextContainer extends StatelessWidget {
   const TextContainer(
     this.text, {
     Key? key,
-    this.textColor = ConstColors.secondary,
+    this.textColor = ConstColors.gray900,
     this.backgroundColor,
-    this.fontSize = 16,
+    this.fontSize = 14,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.textDecoration = TextDecoration.none,
