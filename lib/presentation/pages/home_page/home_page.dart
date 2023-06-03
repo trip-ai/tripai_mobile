@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:tripai/generated/l10n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/const_colors.dart';
 import '../../../constants/const_widgets.dart';
-import '../../../domain/cubit/weather_cubit/weather_cubit.dart';
-import '../../widgets/text_container.dart';
-import 'widgets/category_tab_widget.dart';
-import 'widgets/itinerary_item_widget.dart';
-import 'widgets/places_item_widget.dart';
-import 'widgets/weather_widget.dart';
+import 'screens/add_screen.dart';
+import 'screens/favourite_screen.dart';
+import 'screens/main_screen.dart';
+import 'screens/message_screen.dart';
+import 'screens/profile_screen.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = 'home';
@@ -22,178 +19,114 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<WeatherCubit>(context).getWeather(
-      lat: 41.3109753,
-      long: 69.2793835,
-    );
+  int index = 0;
+
+  var screensList = [
+    const MainScreen(),
+    const FavouriteScreen(),
+    const AddScreen(),
+    const MessageScreen(),
+    const ProfileScreen(),
+  ];
+
+  void onTap(int menuIndex) {
+    setState(() {
+      index = menuIndex;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Row(
-          children: [
-            Container(
-              height: 40,
-              width: 40,
-              decoration: const BoxDecoration(
-                color: ConstColors.gray100,
-                shape: BoxShape.circle,
+      extendBody: true,
+      body: screensList[index],
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          height: 56,
+          padding: const EdgeInsets.all(6),
+          margin: const EdgeInsets.symmetric(horizontal: 44, vertical: 8),
+          decoration: BoxDecoration(
+            color: ConstColors.gray900,
+            borderRadius: ConstWidgets.borderRadius,
+          ),
+          child: Row(
+            children: [
+              MenuItem(
+                iconPath: 'assets/img/home/navbar/home.svg',
+                isSelected: index == 0,
+                onTap: () {
+                  onTap(0);
+                },
               ),
-              child: Center(
-                child: SizedBox(
-                  width: 18,
-                  height: 22,
-                  child: SvgPicture.asset(
-                    'assets/img/home/location.svg',
-                  ),
-                ),
+              MenuItem(
+                iconPath: 'assets/img/home/navbar/heart.svg',
+                isSelected: index == 1,
+                onTap: () {
+                  onTap(1);
+                },
               ),
-            ),
-            const SizedBox(width: 8),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextContainer('Tashkent'),
-                TextContainer(
-                  'Uzbekistan',
-                  fontSize: 14,
-                  textColor: ConstColors.gray400,
-                ),
-              ],
-            ),
-            const Spacer(),
-            Stack(
-              children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                    color: ConstColors.gray100,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: SizedBox(
-                      width: 18,
-                      height: 22,
-                      child: SvgPicture.asset(
-                        'assets/img/home/bell.svg',
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 3,
-                  right: 3,
-                  child: Container(
-                    width: 6,
-                    height: 6,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+              MenuItem(
+                iconPath: 'assets/img/home/navbar/add.svg',
+                isSelected: index == 2,
+                onTap: () {
+                  onTap(2);
+                },
+              ),
+              MenuItem(
+                iconPath: 'assets/img/home/navbar/message.svg',
+                isSelected: index == 3,
+                onTap: () {
+                  onTap(3);
+                },
+              ),
+              MenuItem(
+                iconPath: 'assets/img/home/navbar/user.svg',
+                isSelected: index == 4,
+                onTap: () {
+                  onTap(4);
+                },
+              ),
+            ],
+          ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //Header
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(28),
-                ),
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 10),
-                  const SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        CategoryTabWidget(title: 'All', isSelected: true),
-                        SizedBox(width: 10),
-                        CategoryTabWidget(
-                            title: 'Fast food', isSelected: false),
-                        SizedBox(width: 10),
-                        CategoryTabWidget(title: 'Nature', isSelected: false),
-                        SizedBox(width: 10),
-                        CategoryTabWidget(title: 'Cinema', isSelected: false),
-                        SizedBox(width: 10),
-                        CategoryTabWidget(title: 'Picnic', isSelected: false),
-                        SizedBox(width: 10),
-                        CategoryTabWidget(title: 'Picnic', isSelected: false),
-                        SizedBox(width: 10),
-                        CategoryTabWidget(title: 'Picnic', isSelected: false),
-                        SizedBox(width: 10),
-                        CategoryTabWidget(title: 'Picnic', isSelected: false),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(16),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: ConstWidgets.borderRadius,
-                      color: ConstColors.gray100,
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.search),
-                        const SizedBox(width: 12),
-                        Flexible(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: S.current.homeSearchHint,
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const WeatherWidget(),
-                  const SizedBox(height: 16),
-                ],
-              ),
+    );
+  }
+}
+
+class MenuItem extends StatelessWidget {
+  const MenuItem({
+    super.key,
+    required this.iconPath,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String iconPath;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          constraints: const BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.white : null,
+            borderRadius: ConstWidgets.borderRadius,
+          ),
+          child: Center(
+            child: SvgPicture.asset(
+              iconPath,
+              colorFilter: isSelected
+                  ? const ColorFilter.mode(ConstColors.gray900, BlendMode.srcIn)
+                  : null,
+              width: 24,
+              height: 24,
             ),
-            const SizedBox(height: 8),
-            PlacesListWidget(
-              title: 'Top places',
-              subTitle: 'Places we recommend',
-              isTop: true,
-              onShowAll: () {},
-            ),
-            const SizedBox(height: 8),
-            PlacesListWidget(
-              title: 'Recommended places',
-              subTitle: 'Recommended places based on big data',
-              onShowAll: () {},
-            ),
-            const SizedBox(height: 8),
-            ItineraryListWidget(
-              title: 'Recommended itineraries',
-              subTitle: 'AI generated itineraries from popular places',
-              onShowAll: () {},
-            ),
-          ],
+          ),
         ),
       ),
     );
