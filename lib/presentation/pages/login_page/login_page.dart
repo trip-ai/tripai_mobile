@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../constants/const_colors.dart';
 import '../../../data/repositories/local_data_repository.dart';
+import '../../../domain/core/log.dart';
 import '../../../generated/l10n.dart';
 import '../../widgets/button_container.dart';
 import '../../widgets/text_container.dart';
@@ -49,7 +50,7 @@ class LoginPage extends StatelessWidget {
                       GoogleSignIn googleSignIn = GoogleSignIn();
                       var singIn = await googleSignIn.signIn();
                       if (singIn != null) {
-                        print(singIn.toString());
+                        logInfo(singIn.toString());
                       }
                       await googleSignIn.signOut();
                     },
