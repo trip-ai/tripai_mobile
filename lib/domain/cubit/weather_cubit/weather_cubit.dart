@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:tripai/data/models/error_model.dart';
-import 'package:tripai/data/models/weather_model.dart';
-import 'package:tripai/services/weather_service.dart';
+import '../../../data/models/error_model.dart';
+import '../../../data/models/weather_model.dart';
+import '../../../services/weather_service.dart';
 
 part 'weather_state.dart';
 
@@ -16,7 +16,7 @@ class WeatherCubit extends Cubit<WeatherState> {
     try {
       var service = WeatherService();
       var data = await service.getWeather(lat: lat, long: long);
-      emit(state.copyWith(isLoading: false, weather: data));
+      emit(state.copyWith(isLoading: false, isLoaded: true, weather: data));
     } on ErrorModel catch (error) {
       emit(state.copyWith(isLoading: false, isError: true, error: error));
     } catch (e) {

@@ -2,12 +2,14 @@ part of 'weather_cubit.dart';
 
 class WeatherState extends Equatable {
   final bool isLoading;
+  final bool isLoaded;
   final bool isError;
   final ErrorModel? error;
   final WeatherModel weather;
 
   const WeatherState({
     required this.isLoading,
+    required this.isLoaded,
     required this.isError,
     required this.weather,
     this.error,
@@ -16,6 +18,7 @@ class WeatherState extends Equatable {
   factory WeatherState.init() {
     return WeatherState(
       isLoading: false,
+      isLoaded: false,
       isError: false,
       weather: WeatherModel(
         location: WeatherLocationModel(
@@ -63,12 +66,14 @@ class WeatherState extends Equatable {
 
   WeatherState copyWith({
     bool? isLoading,
+    bool? isLoaded,
     bool? isError,
     ErrorModel? error,
     WeatherModel? weather,
   }) {
     return WeatherState(
       isLoading: isLoading ?? this.isLoading,
+      isLoaded: isLoaded ?? this.isLoaded,
       isError: isError ?? this.isError,
       error: error ?? this.error,
       weather: weather ?? this.weather,
@@ -78,6 +83,7 @@ class WeatherState extends Equatable {
   @override
   List<Object> get props => [
         isLoading.hashCode,
+        isLoaded.hashCode,
         isError.hashCode,
         error.hashCode,
         weather.hashCode,
