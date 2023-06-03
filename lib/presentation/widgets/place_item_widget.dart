@@ -23,20 +23,41 @@ class PlaceItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: SizedBox(
-                  height: 240,
-                  width: 240,
-                  child: Image.asset('assets/img/home/image.png'),
+          Flexible(
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: SizedBox(
+                    height: 240,
+                    width: double.infinity,
+                    child: Image.asset(
+                      'assets/img/home/image.png',
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
                 ),
-              ),
-              if (isTop)
+                if (isTop)
+                  Positioned(
+                    top: 12,
+                    left: 12,
+                    child: Container(
+                      height: 30,
+                      width: 30,
+                      decoration: const BoxDecoration(
+                        color: ConstColors.gray100,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          'assets/img/home/place/top.svg',
+                        ),
+                      ),
+                    ),
+                  ),
                 Positioned(
                   top: 12,
-                  left: 12,
+                  right: 12,
                   child: Container(
                     height: 30,
                     width: 30,
@@ -45,34 +66,18 @@ class PlaceItemWidget extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Center(
-                      child: SvgPicture.asset(
-                        'assets/img/home/place/top.svg',
+                      child: SizedBox(
+                        width: 15,
+                        height: 15,
+                        child: SvgPicture.asset(
+                          'assets/img/home/place/not_favourite.svg',
+                        ),
                       ),
                     ),
                   ),
                 ),
-              Positioned(
-                top: 12,
-                right: 12,
-                child: Container(
-                  height: 30,
-                  width: 30,
-                  decoration: const BoxDecoration(
-                    color: ConstColors.gray100,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: SizedBox(
-                      width: 15,
-                      height: 15,
-                      child: SvgPicture.asset(
-                        'assets/img/home/place/not_favourite.svg',
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,

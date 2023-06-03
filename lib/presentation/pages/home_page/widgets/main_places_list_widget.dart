@@ -5,8 +5,8 @@ import '../../../../constants/const_widgets.dart';
 import '../../../widgets/place_item_widget.dart';
 import '../../../widgets/text_container.dart';
 
-class PlacesListWidget extends StatelessWidget {
-  const PlacesListWidget({
+class MainPlacesListWidget extends StatelessWidget {
+  const MainPlacesListWidget({
     super.key,
     required this.title,
     required this.subTitle,

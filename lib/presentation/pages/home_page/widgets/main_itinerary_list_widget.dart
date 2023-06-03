@@ -5,8 +5,8 @@ import '../../../../constants/const_widgets.dart';
 import '../../../widgets/itinerary_item_widget.dart';
 import '../../../widgets/text_container.dart';
 
-class ItineraryListWidget extends StatelessWidget {
-  const ItineraryListWidget({
+class MainItineraryListWidget extends StatelessWidget {
+  const MainItineraryListWidget({
     super.key,
     required this.title,
     required this.subTitle,
