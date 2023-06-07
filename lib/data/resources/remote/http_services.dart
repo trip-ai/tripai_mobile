@@ -1,9 +1,27 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
+import '../../../domain/core/log.dart';
+import '../../repositories/local_data_repository.dart';
 import 'api_client.dart';
 
 class HttpService implements ApiClient {
   final client = http.Client();
+
+  Map<String, String> _getHeader(Map<String, String>? header) {
+    final requestHeader = header ?? {};
+
+    requestHeader.addAll({'content-type': 'application/json'});
+
+    final accessToken = LocalDataRepository.accessToken;
+
+    if (LocalDataRepository.accessToken.isNotEmpty) {
+      requestHeader.addAll({'Authorization': 'Bearer $accessToken'});
+    }
+
+    return requestHeader;
+  }
 
   @override
   Future<String> request({
@@ -12,34 +30,53 @@ class HttpService implements ApiClient {
     Map<String, dynamic>? body,
     Map<String, String>? header,
   }) async {
+    final requestHeader = _getHeader(header);
+
     http.Response response;
-    switch (method) {
-      case 'GET':
-        response = await _getRequest(
-          url: url,
-          header: header,
-        );
-        break;
-      case 'POST':
-        response = await _postRequest(
-          url: url,
-          body: body ?? {},
-          header: header,
-        );
-        break;
-      default:
-        throw Exception('No such method');
-    }
+    try {
+      switch (method) {
+        case 'GET':
+          response = await _getRequest(
+            url: url,
+            header: requestHeader,
+          );
+          break;
+        case 'POST':
+          response = await _postRequest(
+            url: url,
+            body: body ?? {},
+            header: requestHeader,
+          );
+          break;
+        default:
+          throw Exception('No such method');
+      }
 
-    if (response.statusCode == 401) {
-      //Todo: refresh token;
-    }
+      logWarning('================');
+      logWarning('| URL |\n$url');
+      logWarning('| Header |\n$requestHeader');
+      logWarning('| Body |\n$body');
+      logWarning('| Response (${response.statusCode})|\n${response.body}');
+      logWarning('================');
 
-    if (response.statusCode == 200) {
-      return response.body;
-    }
+      if (response.statusCode == 401) {
+        //Todo: refresh token;
+      }
 
-    throw Exception('Unknown error');
+      if (response.statusCode == 200) {
+        return response.body;
+      }
+
+      throw Exception('Unknown error');
+    } catch (e) {
+      logError('================');
+      logError('| URL |\n$url');
+      logError('| Header |\n$requestHeader');
+      logError('| Body |\n$body');
+      logError('| Error |\n$e');
+      logError('================');
+      rethrow;
+    }
   }
 
   Future<http.Response> _getRequest({
@@ -60,7 +97,7 @@ class HttpService implements ApiClient {
     return await client.post(
       Uri.parse(url),
       headers: header,
-      body: body,
+      body: jsonEncode(body),
     );
   }
 }

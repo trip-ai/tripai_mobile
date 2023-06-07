@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../domain/cubit/sign_up_cubit/sign_up_cubit.dart';
 import '../domain/cubit/weather_cubit/weather_cubit.dart';
 import '../presentation/pages/home_page/home_page.dart';
 import '../presentation/pages/info_page/info_page.dart';
@@ -29,7 +30,14 @@ abstract class AppRouter {
       GoRoute(
         name: LoginPage.routeName,
         path: '/login',
-        builder: (context, state) => const LoginPage(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider<SignUpCubit>(
+              create: (_) => SignUpCubit(),
+            ),
+          ],
+          child: const LoginPage(),
+        ),
       ),
       GoRoute(
         name: HomePage.routeName,
