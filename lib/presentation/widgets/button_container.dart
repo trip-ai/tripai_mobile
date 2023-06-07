@@ -8,6 +8,7 @@ enum IconPosition { left, top, right, bottom }
 
 class ButtonContainer extends StatelessWidget {
   final VoidCallback? onTap;
+  final bool isLoading;
   final Widget? icon;
   final IconPosition iconPosition;
   final String title;
@@ -28,12 +29,13 @@ class ButtonContainer extends StatelessWidget {
     this.fontSize = 16,
     this.icon,
     this.iconPosition = IconPosition.left,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: onTap,
+      onPressed: isLoading ? null : onTap,
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
@@ -52,7 +54,7 @@ class ButtonContainer extends StatelessWidget {
             if (states.contains(MaterialState.pressed)) {
               return background ?? ConstColors.secondary;
             } else if (states.contains(MaterialState.disabled)) {
-              return ConstColors.primary.withOpacity(0.3);
+              return Colors.grey.withOpacity(0.3);
             }
             return background ?? ConstColors.secondary;
           },
@@ -73,13 +75,15 @@ class ButtonContainer extends StatelessWidget {
               height: 56,
               width: width,
               alignment: Alignment.center,
-              child: TextContainer(
-                title,
-                textAlign: TextAlign.center,
-                textColor: textColor ?? Colors.white,
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-              ),
+              child: isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : TextContainer(
+                      title,
+                      textAlign: TextAlign.center,
+                      textColor: textColor ?? Colors.white,
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.bold,
+                    ),
             ),
             if (icon != null && iconPosition == IconPosition.right)
               Container(
