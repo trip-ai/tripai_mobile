@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class NetworkImage extends StatelessWidget {
+class CustomNetworkImage extends StatelessWidget {
   final String? imageUrl;
   final double? width, height;
   final Color? placeholderColor;
@@ -17,7 +17,7 @@ class NetworkImage extends StatelessWidget {
   final Widget? errorWidget;
   final bool orginal;
 
-  const NetworkImage({
+  const CustomNetworkImage({
     Key? key,
     required this.imageUrl,
     this.errorWidget,
