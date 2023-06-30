@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'constants/const_colors.dart';
 import 'generated/l10n.dart';
 import 'router/app_router.dart';
 
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: ConstColors.scaffoldBackgroundColor,
+        fontFamily: 'SFUIDisplay',
       ),
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
