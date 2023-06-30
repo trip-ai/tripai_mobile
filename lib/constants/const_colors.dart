@@ -4,6 +4,8 @@ abstract class ConstColors {
   static const Color primary = Color(0xFF00AA6C);
   static const Color secondary = Color(0xFF020617);
 
+  static const Color scaffoldBackgroundColor = Color(0xFFF5F5F5);
+
   static const Color gray50 = Color(0xFFF9FAFB);
   static const Color gray100 = Color(0xFFF3F4F6);
   static const Color gray200 = Color(0xFFE5E7EB);

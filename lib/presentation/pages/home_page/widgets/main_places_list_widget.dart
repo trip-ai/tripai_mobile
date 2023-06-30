@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../constants/const_colors.dart';
 import '../../../../constants/const_widgets.dart';
 import '../../../widgets/place_item_widget.dart';
 import '../../../widgets/text_container.dart';
+import '../../place_page/place_page.dart';
 
 class MainPlacesListWidget extends StatelessWidget {
   const MainPlacesListWidget({
@@ -87,7 +89,12 @@ class MainPlacesListWidget extends StatelessWidget {
                   padding = const EdgeInsets.only(left: 6, right: 16);
                 }
 
-                return PlaceItemWidget(padding: padding, isTop: isTop);
+                return InkWell(
+                  onTap: () {
+                    context.pushNamed(PlacePage.routeName);
+                  },
+                  child: PlaceItemWidget(padding: padding, isTop: isTop),
+                );
               }),
             ),
           ),

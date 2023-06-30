@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import '../../../domain/core/log.dart';
 import '../../repositories/local_data_repository.dart';
 import 'api_client.dart';
+import 'exception/api_excaption.dart';
 
 class HttpService implements ApiClient {
   final client = http.Client();
@@ -49,7 +50,11 @@ class HttpService implements ApiClient {
           );
           break;
         default:
-          throw Exception('No such method');
+          throw ApiException(
+            'No such method',
+            statusCode: 0,
+            isFriendly: false,
+          );
       }
 
       logWarning('================');
@@ -67,7 +72,11 @@ class HttpService implements ApiClient {
         return response.body;
       }
 
-      throw Exception('Unknown error');
+      throw ApiException(
+        'Unknown error',
+        statusCode: response.statusCode,
+        isFriendly: false,
+      );
     } catch (e) {
       logError('================');
       logError('| URL |\n$url');

@@ -10,6 +10,7 @@ import '../presentation/pages/intro_page/intro_page.dart';
 import '../presentation/pages/loading_page/loading_page.dart';
 import '../presentation/pages/location_page/location_page.dart';
 import '../presentation/pages/login_page/login_page.dart';
+import '../presentation/pages/place_page/place_page.dart';
 import '../presentation/pages/splash_page/splash_page.dart';
 
 abstract class AppRouter {
@@ -70,6 +71,11 @@ abstract class AppRouter {
             name: InterestPage.routeName,
             path: 'interests',
             builder: (context, state) => const InterestPage(),
+          ),
+          GoRoute(
+            name: PlacePage.routeName,
+            path: 'place',
+            builder: (context, state) => const PlacePage(),
           ),
         ],
       ),
